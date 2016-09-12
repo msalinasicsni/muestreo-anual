@@ -27,6 +27,7 @@ public class SintomaZikaCluster implements Auditable{
 	private String fiebre;
 	private String astenia;
 	private String malestado;
+	private String escalosfrios;
 	private MovilInfo movilInfo;
 
 	
@@ -67,6 +68,16 @@ public class SintomaZikaCluster implements Auditable{
 
 	public void setMalestado(String malestado) {
 		this.malestado = malestado;
+	}
+	
+	
+	@Column(name = "escalosfrios", nullable = true, length = 1)
+	public String getEscalosfrios() {
+		return escalosfrios;
+	}
+
+	public void setEscalosfrios(String escalosfrios) {
+		this.escalosfrios = escalosfrios;
 	}
 
 	public MovilInfo getMovilInfo() {
