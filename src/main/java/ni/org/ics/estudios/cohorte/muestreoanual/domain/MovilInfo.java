@@ -36,22 +36,30 @@ public class MovilInfo implements Serializable{
 		
 	}
 	
-	public MovilInfo(Integer idInstancia, String instancePath, String estado
-			, String ultimoCambio, String start, String end, String deviceid,
-			String simserial, String phonenumber, Date today){
-		
-		this.setIdInstancia(idInstancia);
-		this.setInstancePath(instancePath);
-		this.setEstado(estado);
-		this.setUltimoCambio(ultimoCambio);
-		this.setStart(start);
-		this.setEnd(end);
-		this.setDeviceid(deviceid);
-		this.setSimserial(simserial);
-		this.setPhonenumber(phonenumber);
-		this.setToday(today);
-	}
 	
+	
+	public MovilInfo(Integer idInstancia, String instancePath, String estado, Boolean eliminado, String ultimoCambio,
+			String start, String end, String deviceid, String simserial, String phonenumber, Date today,
+			String username, Integer recurso1, Integer recurso2) {
+		super();
+		this.idInstancia = idInstancia;
+		this.instancePath = instancePath;
+		this.estado = estado;
+		this.eliminado = eliminado;
+		this.ultimoCambio = ultimoCambio;
+		this.start = start;
+		this.end = end;
+		this.deviceid = deviceid;
+		this.simserial = simserial;
+		this.phonenumber = phonenumber;
+		this.today = today;
+		this.username = username;
+		this.recurso1 = recurso1;
+		this.recurso2 = recurso2;
+	}
+
+
+
 	@Column(name = "id_instancia", nullable = false)
 	public Integer getIdInstancia() {
 		return idInstancia;
