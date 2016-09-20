@@ -1,5 +1,7 @@
 package ni.org.ics.estudios.cohorte.muestreoanual.domain.clusterzika;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -24,6 +26,8 @@ public class SintomasZikaCluster implements Auditable{
 	
 	private String idSintoma;
 	private Integer codigo;
+	private Date fechaSint;
+	private Integer diaSint;
 	private String fiebre;
 	private String astenia;
 	private String malestadog;
@@ -96,7 +100,25 @@ public class SintomasZikaCluster implements Auditable{
 	}
 
 	
-		
+	
+	@Column(name = "fecha_sint", nullable = true)	
+	public Date getFechaSint() {
+		return fechaSint;
+	}
+
+	public void setFechaSint(Date fechaSint) {
+		this.fechaSint = fechaSint;
+	}
+
+	@Column(name = "dia_sint", nullable = true, length = 2)
+	public Integer getDiaSint() {
+		return diaSint;
+	}
+
+	public void setDiaSint(Integer diaSint) {
+		this.diaSint = diaSint;
+	}
+
 	@Column(name = "fiebre", nullable = true, length = 1)
 	public String getFiebre() {
 		return fiebre;

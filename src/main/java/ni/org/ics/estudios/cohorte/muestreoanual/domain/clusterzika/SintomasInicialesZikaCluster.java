@@ -60,7 +60,7 @@ public class SintomasInicialesZikaCluster implements Auditable{
 	}
 
 
-	@Column(name = "fis", nullable = false, length = 50)
+	@Column(name = "fis", nullable = true)
 	public Date getFis() {
 		return fis;
 	}
@@ -71,7 +71,7 @@ public class SintomasInicialesZikaCluster implements Auditable{
 	}
 
 
-	@Column(name = "fif", nullable = false, length = 50)
+	@Column(name = "fif", nullable = true)
 	public Date getFif() {
 		return fif;
 	}
@@ -82,7 +82,7 @@ public class SintomasInicialesZikaCluster implements Auditable{
 	}
 
 
-	@Column(name = "sintInicial1", nullable = false, length = 2)
+	@Column(name = "sintInicial1", nullable = true, length = 2)
 	public String getSintInicial1() {
 		return sintInicial1;
 	}
@@ -93,7 +93,7 @@ public class SintomasInicialesZikaCluster implements Auditable{
 	}
 
 
-	@Column(name = "sintInicial2", nullable = false, length = 2)
+	@Column(name = "sintInicial2", nullable = true, length = 2)
 	public String getSintInicial2() {
 		return sintInicial2;
 	}
@@ -104,7 +104,7 @@ public class SintomasInicialesZikaCluster implements Auditable{
 	}
 
 
-	@Column(name = "sintInicial3", nullable = false, length = 2)
+	@Column(name = "sintInicial3", nullable = true, length = 2)
 	public String getSintInicial3() {
 		return sintInicial3;
 	}
@@ -115,7 +115,7 @@ public class SintomasInicialesZikaCluster implements Auditable{
 	}
 
 
-	@Column(name = "sintInicial4", nullable = false, length = 2)
+	@Column(name = "sintInicial4", nullable = true, length = 2)
 	public String getSintInicial4() {
 		return sintInicial4;
 	}
@@ -126,7 +126,7 @@ public class SintomasInicialesZikaCluster implements Auditable{
 	}
 
 
-	@Column(name = "otrorecurso1", nullable = false, length = 50)
+	@Column(name = "otrorecurso1", nullable = true, length = 50)
 	public String getOtrorecurso1() {
 		return otrorecurso1;
 	}
@@ -137,7 +137,7 @@ public class SintomasInicialesZikaCluster implements Auditable{
 	}
 
 
-	@Column(name = "otrorecurso2", nullable = false, length = 50)
+	@Column(name = "otrorecurso2", nullable = true, length = 50)
 	public String getOtrorecurso2() {
 		return otrorecurso2;
 	}
