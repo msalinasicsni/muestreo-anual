@@ -5,9 +5,7 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import ni.org.ics.estudios.cohorte.muestreoanual.domain.CambiosCasas;
-import ni.org.ics.estudios.cohorte.muestreoanual.domain.CodigosCasas;
 import ni.org.ics.estudios.cohorte.muestreoanual.service.CambiosCasasService;
-import ni.org.ics.estudios.cohorte.muestreoanual.service.CodigosCasasService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;

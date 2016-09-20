@@ -9,7 +9,6 @@ import javax.annotation.Resource;
 
 import ni.org.ics.estudios.cohorte.muestreoanual.domain.CambioEstudio;
 import ni.org.ics.estudios.cohorte.muestreoanual.domain.CambioEstudioId;
-import ni.org.ics.estudios.cohorte.muestreoanual.domain.ConsentimientoChikId;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
