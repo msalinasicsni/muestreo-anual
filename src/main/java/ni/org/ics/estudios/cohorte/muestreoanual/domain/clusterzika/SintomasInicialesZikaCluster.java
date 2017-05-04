@@ -23,8 +23,7 @@ public class SintomasInicialesZikaCluster implements Auditable{
 	/**
 	 * 
 	 */
-	
-	private String idSintomasiniciales;
+
 	private Integer codigo;
 	private Date fis;
 	private Date fif;
@@ -39,17 +38,6 @@ public class SintomasInicialesZikaCluster implements Auditable{
 	
 	
 	@Id
-	
-	@Column(name = "idSintomasiniciales", nullable = false, length = 50)
-	public String getIdSintomasiniciales() {
-		return idSintomasiniciales;
-	}
-
-	public void setIdSintomasiniciales(String idSintomasiniciales) {
-		this.idSintomasiniciales = idSintomasiniciales;
-	}
-	
-	
 	@Column(name = "codigo", nullable = false, length = 11)
 	public Integer getCodigo() {
 		return codigo;

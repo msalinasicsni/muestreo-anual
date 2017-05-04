@@ -37,6 +37,7 @@ public class Vacuna {
 	private Date fechaInf9;
 	private Date fechaInf10;
 	private MovilInfo movilInfo;
+	private Integer otrorecurso1;
 
 	@Id
 	public VacunaId getVacunaId() {
@@ -188,6 +189,15 @@ public class Vacuna {
 
 	public void setMovilInfo(MovilInfo movilInfo) {
 		this.movilInfo = movilInfo;
+	}
+	
+	@Column(name = "otrorecurso1", nullable = true, length = 10)
+	public Integer getOtrorecurso1() {
+		return otrorecurso1;
+	}
+
+	public void setOtrorecurso1(Integer otrorecurso1) {
+		this.otrorecurso1 = otrorecurso1;
 	}
 
 }

@@ -23,16 +23,16 @@ public class VisitaTerreno {
 	private Integer motNoVisita;
 	private String acomp;
 	private Integer relacionFam;
+	
 	private Integer asentimiento;
-	private Integer cDom;
-	private Integer barrio;
-	private Integer manzana;
-	private String direccion;
-	private String coordenadas;
-	private Double latitud;
-	private Double longitud;
+	
+	private String otraRelacionFam;
+	private String carnetSN;
+	
+	
 	private MovilInfo movilInfo;
-
+	private Integer otrorecurso1;
+	private Integer otrorecurso2;
 
 	@EmbeddedId
 	public VisitaTerrenoId getVisitaId() {
@@ -89,50 +89,7 @@ public class VisitaTerreno {
 		this.asentimiento = asentimiento;
 	}
 
-	@Column(name = "cdom", nullable = true)
-	public Integer getcDom() {
-		return cDom;
-	}
-
-	public void setcDom(Integer cDom) {
-		this.cDom = cDom;
-	}
-
-	@Column(name = "barrio", nullable = true)
-	public Integer getBarrio() {
-		return barrio;
-	}
-
-	public void setBarrio(Integer barrio) {
-		this.barrio = barrio;
-	}
-
-	@Column(name = "direccion", nullable = true)
-	public String getDireccion() {
-		return direccion;
-	}
-
-	public void setDireccion(String direccion) {
-		this.direccion = direccion;
-	}
-
-	@Column(name = "manzana", nullable = true)
-	public Integer getManzana() {
-		return manzana;
-	}
-
-	public void setManzana(Integer manzana) {
-		this.manzana = manzana;
-	}
-
-	@Column(name = "coordenadas", nullable = true)
-	public String getCoordenadas() {
-		return coordenadas;
-	}
-
-	public void setCoordenadas(String coordenadas) {
-		this.coordenadas = coordenadas;
-	}
+	
 
 	public MovilInfo getMovilInfo() {
 		return movilInfo;
@@ -142,21 +99,41 @@ public class VisitaTerreno {
 		this.movilInfo = movilInfo;
 	}
 	
-	@Column(name = "latitud", nullable = true)
-	public Double getLatitud() {
-		return latitud;
+	
+	@Column(name = "otrorecurso1", nullable = true, length = 10)
+	public Integer getOtrorecurso1() {
+		return otrorecurso1;
 	}
 
-	public void setLatitud(Double latitud) {
-		this.latitud = latitud;
+	public void setOtrorecurso1(Integer otrorecurso1) {
+		this.otrorecurso1 = otrorecurso1;
 	}
 
-	@Column(name = "longitud", nullable = true)
-	public Double getLongitud() {
-		return longitud;
+	@Column(name = "otrorecurso2", nullable = true, length = 10)
+	public Integer getOtrorecurso2() {
+		return otrorecurso2;
 	}
 
-	public void setLongitud(Double longitud) {
-		this.longitud = longitud;
+	public void setOtrorecurso2(Integer otrorecurso2) {
+		this.otrorecurso2 = otrorecurso2;
 	}
+
+	@Column(name = "otraRelacionFam", nullable = true, length = 50)
+	public String getOtraRelacionFam() {
+		return otraRelacionFam;
+	}
+
+	public void setOtraRelacionFam(String otraRelacionFam) {
+		this.otraRelacionFam = otraRelacionFam;
+	}
+
+	@Column(name = "carnetSN", nullable = true, length = 2)
+	public String getCarnetSN() {
+		return carnetSN;
+	}
+
+	public void setCarnetSN(String carnetSN) {
+		this.carnetSN = carnetSN;
+	}
+	
 }

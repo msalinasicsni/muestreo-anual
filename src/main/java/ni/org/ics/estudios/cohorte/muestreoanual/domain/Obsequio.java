@@ -32,6 +32,7 @@ public class Obsequio {
 	private String observaciones;
 	
 	private MovilInfo movilInfo;
+	private Integer otrorecurso1;
 
 	@Column(name = "obseqsn", nullable = true, length = 1)
 	public Integer getObseqSN() {
@@ -138,5 +139,14 @@ public class Obsequio {
 
 	public void setObservaciones(String observaciones) {
 		this.observaciones = observaciones;
+	}
+	
+	@Column(name = "otrorecurso1", nullable = true, length = 10)
+	public Integer getOtrorecurso1() {
+		return otrorecurso1;
+	}
+
+	public void setOtrorecurso1(Integer otrorecurso1) {
+		this.otrorecurso1 = otrorecurso1;
 	}
 }

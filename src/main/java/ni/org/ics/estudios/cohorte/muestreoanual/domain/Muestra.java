@@ -39,6 +39,8 @@ public class Muestra {
 	private String terreno;
 	private Integer pinchazos;
 	private MovilInfo movilInfo;
+	private Integer otrorecurso1;
+	private Integer otrorecurso2;
 
 	@Column(name = "fiebre", nullable = true, length = 1)
 	public Integer getFiebreM() {
@@ -220,5 +222,23 @@ public class Muestra {
 
 	public void setmId(MuestraId mId) {
 		this.mId = mId;
+	}
+	
+	@Column(name = "otrorecurso1", nullable = true, length = 10)
+	public Integer getOtrorecurso1() {
+		return otrorecurso1;
+	}
+
+	public void setOtrorecurso1(Integer otrorecurso1) {
+		this.otrorecurso1 = otrorecurso1;
+	}
+
+	@Column(name = "otrorecurso2", nullable = true, length = 10)
+	public Integer getOtrorecurso2() {
+		return otrorecurso2;
+	}
+
+	public void setOtrorecurso2(Integer otrorecurso2) {
+		this.otrorecurso2 = otrorecurso2;
 	}
 }

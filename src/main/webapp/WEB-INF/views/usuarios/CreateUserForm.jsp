@@ -128,6 +128,9 @@
 													</label> <label class="checkbox-inline"> <form:checkbox
 															path="pesoTalla" /> <fmt:message key="pesotalla" />
 													</label>
+													<label class="checkbox-inline"> <form:checkbox
+															path="datosparto" /> <fmt:message key="datosparto" />
+													</label>
 												</div>
 											</div>
 											<div class="form-group">

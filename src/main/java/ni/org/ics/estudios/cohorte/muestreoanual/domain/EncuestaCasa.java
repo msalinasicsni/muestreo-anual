@@ -28,6 +28,7 @@ public class EncuestaCasa {
 	private Integer cvivencasa4;
 	private Integer cvivencasa5;
 	private Integer cvivencasa6;
+	private Integer cvivencasa7;
 	private Integer ccuartos;
 	private Integer grifo;
 	private Integer grifoComSN;
@@ -57,6 +58,8 @@ public class EncuestaCasa {
 	private Integer cerdos;
 	private Integer cerdoscasa;
 	private MovilInfo movilInfo;
+	private Integer otrorecurso1;
+	private Integer otrorecurso2;
 
 
 	@EmbeddedId
@@ -383,5 +386,34 @@ public class EncuestaCasa {
 	public void setMovilInfo(MovilInfo movilInfo) {
 		this.movilInfo = movilInfo;
 	}
+	
+	@Column(name = "otrorecurso1", nullable = true, length = 10)
+	public Integer getOtrorecurso1() {
+		return otrorecurso1;
+	}
+
+	public void setOtrorecurso1(Integer otrorecurso1) {
+		this.otrorecurso1 = otrorecurso1;
+	}
+
+	@Column(name = "otrorecurso2", nullable = true, length = 10)
+	public Integer getOtrorecurso2() {
+		return otrorecurso2;
+	}
+
+	public void setOtrorecurso2(Integer otrorecurso2) {
+		this.otrorecurso2 = otrorecurso2;
+	}
+
+	@Column(name = "cvivencasa7", nullable = true, length = 2)
+	public Integer getCvivencasa7() {
+		return cvivencasa7;
+	}
+
+	public void setCvivencasa7(Integer cvivencasa7) {
+		this.cvivencasa7 = cvivencasa7;
+	}
+	
+	
 
 }

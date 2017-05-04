@@ -33,7 +33,8 @@ public class PesoyTalla {
 	private Double difPeso;
 	private Double difTalla;
 	private MovilInfo movilInfo;
-
+	private Integer otrorecurso1;
+	private Integer otrorecurso2;
 
 	@Column(name = "peso1", nullable = true)
 	public Double getPeso1() {
@@ -149,6 +150,25 @@ public class PesoyTalla {
 
 	public void setPtId(PesoyTallaId ptId) {
 		this.ptId = ptId;
+	}
+	
+	
+	@Column(name = "otrorecurso1", nullable = true, length = 10)
+	public Integer getOtrorecurso1() {
+		return otrorecurso1;
+	}
+
+	public void setOtrorecurso1(Integer otrorecurso1) {
+		this.otrorecurso1 = otrorecurso1;
+	}
+
+	@Column(name = "otrorecurso2", nullable = true, length = 10)
+	public Integer getOtrorecurso2() {
+		return otrorecurso2;
+	}
+
+	public void setOtrorecurso2(Integer otrorecurso2) {
+		this.otrorecurso2 = otrorecurso2;
 	}
 
 }

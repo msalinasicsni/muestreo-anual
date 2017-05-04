@@ -73,6 +73,12 @@
 					<li><a href="<spring:url value="/resources/apk/BarcodeScanner3.53.apk" htmlEscape="true" />"><fmt:message key="down.bc2" /></a></li>
 				</ul>
 			</li>
+			<li class="has_sub"><a href="#"><i class="icon-file"></i><fmt:message key="docs" /><span class="pull-right"><i class="icon-chevron-right"></i></span></a>
+				<ul>
+					<li><a href="<spring:url value="/docs/searchcod" htmlEscape="true" />"><fmt:message key="docs.searchcod" /></a></li>
+					<li><a href="<spring:url value="/docs/searchdate" htmlEscape="true" />"><fmt:message key="docs.searchdate" /></a></li>
+				</ul>
+			</li>
 			<li class="has_sub"><a href="#"><i class="icon-envelope"></i><fmt:message key="sms" /><span class="pull-right"><i class="icon-chevron-right"></i></span></a>
 				<ul>
 					<li><a href="<spring:url value="/sms/admin/sms" htmlEscape="true" />"><fmt:message key="sms.ind" /></a></li>

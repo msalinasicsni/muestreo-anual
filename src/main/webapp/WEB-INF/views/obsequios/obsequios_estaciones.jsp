@@ -151,7 +151,6 @@
 			</div>
 			<!-- Mainbar ends -->
 			<div class="clearfix"></div>
-
 			<!-- Content ends -->
 		</div>
 	</div>

@@ -65,6 +65,7 @@ public class Participante {
 	private String pesoTalla;
 	private String encPart;
 	private String enCasa;
+	private String datosVisita;
 	private String obsequio;
 	private String convalesciente;
 	private String infoVacuna;
@@ -73,6 +74,9 @@ public class Participante {
 	private String retoma;
 	private Double volRetoma;
 	private String telefono;
+	private Integer cuantasPers;
+	private String datosParto;
+	private String posZika;
 	private MovilInfo movilInfo;
 
 	@Id
@@ -561,5 +565,43 @@ public class Participante {
 	public void setTelefono(String telefono) {
 		this.telefono = telefono;
 	}
+
+	@Column(name = "cuantas_personas", nullable = true, length = 2)
+	public Integer getCuantasPers() {
+		return cuantasPers;
+	}
+
+	public void setCuantasPers(Integer cuantasPers) {
+		this.cuantasPers = cuantasPers;
+	}
+
+	@Column(name = "datos_parto", nullable = true, length = 2)
+	public String getDatosParto() {
+		return datosParto;
+	}
+
+	public void setDatosParto(String datosParto) {
+		this.datosParto = datosParto;
+	}
+
+	@Column(name = "pos_zika", nullable = true, length = 2)
+	public String getPosZika() {
+		return posZika;
+	}
+
+	public void setPosZika(String posZika) {
+		this.posZika = posZika;
+	}
+
+	@Column(name = "datos_visita", nullable = true, length = 2)
+	public String getDatosVisita() {
+		return datosVisita;
+	}
+
+	public void setDatosVisita(String datosVisita) {
+		this.datosVisita = datosVisita;
+	}
+	
+	
 
 }

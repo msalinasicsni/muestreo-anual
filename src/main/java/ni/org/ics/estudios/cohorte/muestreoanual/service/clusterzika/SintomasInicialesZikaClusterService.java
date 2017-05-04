@@ -49,11 +49,11 @@ public class SintomasInicialesZikaClusterService {
 	 * @return un <code>SintomasInicialesZikaCluster</code>
 	 */
 
-	public SintomasInicialesZikaCluster getSintomasInicialesZikaCluster(Integer idSin) {
+	public SintomasInicialesZikaCluster getSintomasInicialesZikaCluster(Integer codigo) {
 		// Retrieve session from Hibernate
 		Session session = sessionFactory.getCurrentSession();
-		Query query = session.createQuery("FROM SintomasInicialesZikaCluster sin where sin.idSintomasiniciales =:idSin");
-		query.setParameter("idSin", idSin);
+		Query query = session.createQuery("FROM SintomasInicialesZikaCluster sin where sin.codigo =:codigo");
+		query.setParameter("codigo", codigo);
 		SintomasInicialesZikaCluster sinZika = (SintomasInicialesZikaCluster) query.uniqueResult();
 		return sinZika;
 	}

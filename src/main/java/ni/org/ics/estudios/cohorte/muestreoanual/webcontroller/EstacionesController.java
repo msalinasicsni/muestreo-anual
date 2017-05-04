@@ -9,6 +9,7 @@ import ni.org.ics.estudios.cohorte.muestreoanual.domain.ConsentimientoChik;
 import ni.org.ics.estudios.cohorte.muestreoanual.domain.Muestra;
 import ni.org.ics.estudios.cohorte.muestreoanual.domain.Obsequio;
 import ni.org.ics.estudios.cohorte.muestreoanual.service.MuestraService;
+import ni.org.ics.estudios.cohorte.muestreoanual.service.NewVacunaService;
 import ni.org.ics.estudios.cohorte.muestreoanual.service.ObsequioService;
 import ni.org.ics.estudios.cohorte.muestreoanual.service.ReConsentimientoDenService;
 import ni.org.ics.estudios.cohorte.muestreoanual.service.ReporteService;
@@ -36,6 +37,8 @@ public class EstacionesController {
 	private ObsequioService obsequioService;
 	@Resource(name="reconsentimientoService")
 	private ReConsentimientoDenService reconsentimientoService;
+	@Resource(name="newVacunaService")
+	private NewVacunaService newVacunaService;
 	private static final Logger logger = LoggerFactory.getLogger(EstacionesController.class);
 	
 	

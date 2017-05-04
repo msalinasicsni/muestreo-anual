@@ -37,7 +37,7 @@ public class EncuestaSatisfaccion {
 	private Integer explPeligEnf;
 	private Integer expMedCuid;
 	private MovilInfo movilInfo;
-
+	private Integer otrorecurso1;
 	
 	@Id
 	@Column(name = "fecha_encuesta", nullable = false)
@@ -181,6 +181,15 @@ public class EncuestaSatisfaccion {
 
 	public void setMovilInfo(MovilInfo movilInfo) {
 		this.movilInfo = movilInfo;
+	}
+	
+	@Column(name = "otrorecurso1", nullable = true, length = 10)
+	public Integer getOtrorecurso1() {
+		return otrorecurso1;
+	}
+
+	public void setOtrorecurso1(Integer otrorecurso1) {
+		this.otrorecurso1 = otrorecurso1;
 	}
 
 }

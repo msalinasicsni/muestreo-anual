@@ -3,7 +3,6 @@ package ni.org.ics.estudios.cohorte.muestreoanual.service.clusterzika;
 import java.util.List;
 import javax.annotation.Resource;
 
-import ni.org.ics.estudios.cohorte.muestreoanual.domain.clusterzika.CasaZikaCluster;
 import ni.org.ics.estudios.cohorte.muestreoanual.domain.clusterzika.ParticipanteZikaCluster;
 
 import org.hibernate.Query;

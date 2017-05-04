@@ -45,6 +45,7 @@ public class User {
 	private Boolean consentimiento=false;
 	private Boolean casazika=false;
 	private Boolean tamizajezika=false;
+	private Boolean datosparto=false;
 	private String usuario;
 	private Set<Authority> authorities;
 	
@@ -188,6 +189,14 @@ public class User {
 	}
 	public void setTamizajezika(Boolean tamizajezika) {
 		this.tamizajezika = tamizajezika;
+	}
+	
+	@Column(name = "datosparto", nullable = false)
+	public Boolean getDatosparto() {
+		return datosparto;
+	}
+	public void setDatosparto(Boolean datosparto) {
+		this.datosparto = datosparto;
 	}
 	@OneToMany(mappedBy = "user", fetch=FetchType.EAGER)
 	@IndexColumn(name = "username", base=0)
