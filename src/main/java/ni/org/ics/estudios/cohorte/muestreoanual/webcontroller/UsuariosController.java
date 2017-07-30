@@ -34,7 +34,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 /**
  * Controlador web de peticiones relacionadas a usuarios
  * 
- * @author William Avilés
+ * @author William Aviles
  */
 @Controller
 @RequestMapping("/usuarios/*")
@@ -332,7 +332,7 @@ public class UsuariosController {
             user.setPassword(encodedPass);
         	this.usuarioService.updateUser(user);
             status.setComplete();
-            redirectAttributes.addFlashAttribute("SUCCESS", "Contraseña cambiada correctamente!");
+            redirectAttributes.addFlashAttribute("SUCCESS", "ContraseÃ±a cambiada correctamente!");
             return "redirect:/usuarios/admin/{username}";
         }
     }
@@ -357,7 +357,7 @@ public class UsuariosController {
             user.setPassword(encodedPass);
         	this.usuarioService.updateUser(user);
             status.setComplete();
-            redirectAttributes.addFlashAttribute("SUCCESS", "Contraseña cambiada correctamente!");
+            redirectAttributes.addFlashAttribute("SUCCESS", "ContraseÃ±a cambiada correctamente!");
             return "redirect:/";
         }
     }

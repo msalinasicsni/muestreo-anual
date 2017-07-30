@@ -51,9 +51,9 @@ public class User {
 	
 	@Id
 	@Column(name = "username", nullable = false, length =50)
-	@Size(min = 5, max = 50, message = "Nombre de usuario debe contener ontener mínimo 5 caracteres.")
+	@Size(min = 5, max = 50, message = "Nombre de usuario debe contener minimo 5 caracteres.")
 	@Pattern(regexp = "^[a-zA-Z0-9]+$", message = "Solo alfanumerico sin espacios")
-	@NotBlank(message = "No puede estar vacío.")
+	@NotBlank(message = "No puede estar vacio.")
 	public String getUsername() {
 		return username;
 	}
@@ -68,9 +68,9 @@ public class User {
 		this.created = created;
 	}
 	@Column(name = "password", nullable = false, length =150)
-	@Size(min = 4, max = 150, message = "Contraseña debe contener mínimo 8 caracteres.")
+	@Size(min = 4, max = 150, message = "ContraseÃ±a debe contener minimo 8 caracteres.")
 	@Pattern(regexp = "^[a-zA-Z0-9!@#$%^&*()?/]+$", message = "Solo alfanumerico y caracteres especiales (!@#$%^&*()?/). No espacios")
-	@NotBlank(message = "No puede estar vacío.")
+	@NotBlank(message = "No puede estar vacio.")
 	public String getPassword() {
 		return password;
 	}

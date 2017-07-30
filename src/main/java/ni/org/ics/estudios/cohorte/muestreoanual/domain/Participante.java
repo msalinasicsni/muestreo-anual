@@ -77,6 +77,9 @@ public class Participante {
 	private Integer cuantasPers;
 	private String datosParto;
 	private String posZika;
+	private String mi;
+	private String cand;
+	private String casaCHF;
 	private MovilInfo movilInfo;
 
 	@Id
@@ -600,6 +603,33 @@ public class Participante {
 
 	public void setDatosVisita(String datosVisita) {
 		this.datosVisita = datosVisita;
+	}
+
+	@Column(name = "mi", nullable = true, length = 2)
+	public String getMi() {
+		return mi;
+	}
+
+	public void setMi(String mi) {
+		this.mi = mi;
+	}
+
+	@Column(name = "cand_chf", nullable = true, length = 2)
+	public String getCand() {
+		return cand;
+	}
+
+	public void setCand(String cand) {
+		this.cand = cand;
+	}
+
+	@Column(name = "casa_chf", nullable = true, length = 10)
+	public String getCasaCHF() {
+		return casaCHF;
+	}
+
+	public void setCasaCHF(String casaCHF) {
+		this.casaCHF = casaCHF;
 	}
 	
 	
