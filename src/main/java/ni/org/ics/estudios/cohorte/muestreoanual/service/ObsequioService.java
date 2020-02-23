@@ -10,6 +10,7 @@ import javax.annotation.Resource;
 import ni.org.ics.estudios.cohorte.muestreoanual.domain.Obsequio;
 import ni.org.ics.estudios.cohorte.muestreoanual.domain.ObsequioId;
 
+import ni.org.ics.estudios.cohorte.muestreoanual.utils.Constants;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -58,7 +59,8 @@ public class ObsequioService {
 		// Retrieve session from Hibernate
 		Session session = sessionFactory.getCurrentSession();
 		// Create a Hibernate query (HQL)
-		Query query = session.createQuery("FROM Obsequio obs where obs.obseqSN = 1");
+		Query query = session.createQuery("FROM Obsequio obs where year(obs.movilInfo.today) = :anio and obs.obseqSN = 1");
+		query.setInteger("anio", Constants.ANIOMUESTREO);
 		// Retrieve all
 		return  query.list();
 	}
@@ -68,7 +70,8 @@ public class ObsequioService {
 		// Retrieve session from Hibernate
 		Session session = sessionFactory.getCurrentSession();
 		// Create a Hibernate query (HQL)
-		Query query = session.createSQLQuery("SELECT DATE(fecha_entrega), COUNT(codigo) AS Total FROM obsequios WHERE obseqsn=1 GROUP BY DATE(fecha_entrega);");
+		Query query = session.createSQLQuery("SELECT DATE(fecha_entrega), COUNT(codigo) AS Total FROM estudios_ics.obsequios WHERE YEAR(fecha_entrega) = :anio AND obseqsn=1 GROUP BY DATE(fecha_entrega);");
+		query.setInteger("anio", Constants.ANIOMUESTREO);
 		// Retrieve all
 		return  query.list();
 	}

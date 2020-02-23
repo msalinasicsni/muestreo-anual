@@ -10,6 +10,7 @@ import javax.annotation.Resource;
 import ni.org.ics.estudios.cohorte.muestreoanual.domain.TempPbmc;
 import ni.org.ics.estudios.cohorte.muestreoanual.domain.TempPbmcId;
 
+import ni.org.ics.estudios.cohorte.muestreoanual.utils.Constants;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -42,7 +43,8 @@ public class TempPbmcService {
 		// Retrieve session from Hibernate
 		Session session = sessionFactory.getCurrentSession();
 		// Create a Hibernate query (HQL)
-		Query query = session.createQuery("FROM TempPbmc");
+		Query query = session.createQuery("FROM TempPbmc where year(tempPbmcId.fechaTempPbmc) = :anio");
+		query.setInteger("anio", Constants.ANIOMUESTREO);
 		// Retrieve all
 		return  query.list();
 	}
@@ -53,7 +55,8 @@ public class TempPbmcService {
 		// Retrieve session from Hibernate
 		Session session = sessionFactory.getCurrentSession();
 		// Create a Hibernate query (HQL)
-		Query query = session.createSQLQuery("SELECT DATE(fecha_temp_pbmc) as fecha, COUNT(temperatura) AS Cuenta, 12 as LimInf, 30 as LimSup, Min(temperatura) AS Minimo, Avg(temperatura) AS Promedio, Max(temperatura) AS Maximo FROM temp_pbmc GROUP BY DATE(fecha_temp_pbmc);");
+		Query query = session.createSQLQuery("SELECT DATE(fecha_temp_pbmc) as fecha, COUNT(temperatura) AS Cuenta, 12 as LimInf, 30 as LimSup, Min(temperatura) AS Minimo, Avg(temperatura) AS Promedio, Max(temperatura) AS Maximo FROM estudios_ics.temp_pbmc WHERE YEAR(fecha_temp_pbmc) = :anio GROUP BY DATE(fecha_temp_pbmc);");
+		query.setInteger("anio", Constants.ANIOMUESTREO);
 		// Retrieve all
 		return  query.list();
 	}

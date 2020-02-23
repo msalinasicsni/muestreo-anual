@@ -21,8 +21,8 @@
 					<li><a href="<spring:url value="/estaciones/rojos" htmlEscape="true" />"><fmt:message key="samples.red" /></a></li>
 					<li><a href="<spring:url value="/estaciones/pbmcs" htmlEscape="true" />"><fmt:message key="samples.pbmc" /></a></li>
 					<li><a href="<spring:url value="/estaciones/obsequios" htmlEscape="true" />"><fmt:message key="obsequios.menu" /></a></li>
-					<li><a href="<spring:url value="/estaciones/consentimientoschik" htmlEscape="true" />"><fmt:message key="conschik" /></a></li>
-					<li><a href="<spring:url value="/estaciones/chgest" htmlEscape="true" />"><fmt:message key="chgest" /></a></li>
+					<!--<li><a href="<spring:url value="/estaciones/consentimientoschik" htmlEscape="true" />"><fmt:message key="conschik" /></a></li>
+					<li><a href="<spring:url value="/estaciones/chgest" htmlEscape="true" />"><fmt:message key="chgest" /></a></li>-->
 				</ul>
 			</li>
 			<li class="has_sub"><a href="#"><i class="icon-user-md"></i><fmt:message key="sup" /><span class="pull-right"><i class="icon-chevron-right"></i></span></a>
@@ -40,7 +40,7 @@
 					<li><a href="<spring:url value="/laboratorio/rojos" htmlEscape="true" />"><fmt:message key="samples.red" /></a></li>
 					<li><a href="<spring:url value="/laboratorio/pbmcs" htmlEscape="true" />"><fmt:message key="samples.pbmc" /></a></li>
 					<li><a href="<spring:url value="/laboratorio/paxs" htmlEscape="true" />"><fmt:message key="pax" /></a></li>
-					<li><a href="<spring:url value="/laboratorio/temperaturas" htmlEscape="true" />"><fmt:message key="temp.menu" /></a></li>
+					<!--<li><a href="<spring:url value="/laboratorio/temperaturas" htmlEscape="true" />"><fmt:message key="temp.menu" /></a></li>-->
 				</ul>
 			</li>
 			<li class="has_sub"><a href="#"><i class="icon-ok"></i><fmt:message key="qc.menu" /><span class="pull-right"><i class="icon-chevron-right"></i></span></a>
@@ -65,7 +65,7 @@
 					<li><a href="<spring:url value="/mapas/pendientes" htmlEscape="true" />"><fmt:message key="mapas.pendientes" /></a></li>
 				</ul>
 			</li>
-			<li class="has_sub"><a href="#"><i class="icon-download"></i><fmt:message key="down" /><span class="pull-right"><i class="icon-chevron-right"></i></span></a>
+			<!--<li class="has_sub"><a href="#"><i class="icon-download"></i><fmt:message key="down" /><span class="pull-right"><i class="icon-chevron-right"></i></span></a>
 				<ul>
 					<li><a href="<spring:url value="/resources/apk/ODK MA.apk" htmlEscape="true" />"><fmt:message key="down.odk" /></a></li>
 					<li><a href="<spring:url value="/resources/apk/muestreo-anual-app.apk" htmlEscape="true" />"><fmt:message key="down.ma" /></a></li>
@@ -86,7 +86,7 @@
 					<li><a href="<spring:url value="/sms/admin/stats" htmlEscape="true" />"><fmt:message key="sms.stats" /></a></li>
 				</ul>
 			</li>
-			<li><a href="<spring:url value="/usuarios/admin/list" htmlEscape="true" />"><i class="icon-group"></i> <fmt:message key="users" /></a></li>
+			<li><a href="<spring:url value="/usuarios/admin/list" htmlEscape="true" />"><i class="icon-group"></i> <fmt:message key="users" /></a></li>-->
 			<!-- Main content starts <li><a href="<spring:url value="/usuarios/admin/sms" htmlEscape="true" />"><i class="icon-envelope"></i> <fmt:message key="sms" /></a></li>-->
 		</ul>
 	</div>

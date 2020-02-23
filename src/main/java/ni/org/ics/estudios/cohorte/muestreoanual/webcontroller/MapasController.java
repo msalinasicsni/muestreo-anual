@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.util.List;
 import javax.annotation.Resource;
 
+import ni.org.ics.estudios.cohorte.muestreoanual.dto.PuntoGps;
 import ni.org.ics.estudios.cohorte.muestreoanual.service.LabBHCService;
 import ni.org.ics.estudios.cohorte.muestreoanual.service.LabPbmcService;
 import ni.org.ics.estudios.cohorte.muestreoanual.service.LabSeroService;
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * Maneja las solicitudes que van a la aplicacion relacionadas a json
@@ -41,7 +43,7 @@ public class MapasController {
 	@RequestMapping(value = "/cohorte", method = RequestMethod.GET)
     public String fetchCohorteJSP(Model model) throws ParseException {
     	logger.debug("Mostrando Mapa en JSP");
-    	List<Object> participantes = mapaService.getParticipantesPuntos();
+    	List<PuntoGps> participantes = mapaService.getParticipantesPuntosGps();
     	model.addAttribute("puntos", participantes);
     	List<Object> muestrasTotal = reporteService.getMuestrasTotal();
         model.addAttribute("muestrasTotal", muestrasTotal);
@@ -49,13 +51,13 @@ public class MapasController {
         model.addAttribute("muestrasEstudio", muestrasxEstudio);
         List<Object> muestrasxTubo = reporteService.getMuestrasxTubo();
         model.addAttribute("muestrasTubo", muestrasxTubo);
-    	return "mapas/cohorte";
+    	return "mapas/cohorteOSM";
 	}  
 
 	@RequestMapping(value = "/muestras", method = RequestMethod.GET)
     public String fetchMuestrasJSP(Model model) throws ParseException {
     	logger.debug("Mostrando Mapa en JSP");
-    	List<Object> participantes = mapaService.getParticipantesMuestras();
+    	List<PuntoGps> participantes = mapaService.getParticipantesMuestrasGps();
     	model.addAttribute("puntos", participantes);
     	List<Object> muestrasTotal = reporteService.getMuestrasTotal();
         model.addAttribute("muestrasTotal", muestrasTotal);
@@ -63,13 +65,13 @@ public class MapasController {
         model.addAttribute("muestrasEstudio", muestrasxEstudio);
         List<Object> muestrasxTubo = reporteService.getMuestrasxTubo();
         model.addAttribute("muestrasTubo", muestrasxTubo);
-    	return "mapas/muestras";
+    	return "mapas/muestrasOSM";
 	}   	
 	
 	@RequestMapping(value = "/pendientes", method = RequestMethod.GET)
     public String fetchPendientesJSP(Model model) throws ParseException {
     	logger.debug("Mostrando Mapa en JSP");
-    	List<Object> participantes = mapaService.getParticipantesPendientes();
+    	List<PuntoGps> participantes = mapaService.getParticipantesPendientesGps();
     	model.addAttribute("puntos", participantes);
     	List<Object> muestrasTotal = reporteService.getMuestrasTotal();
         model.addAttribute("muestrasTotal", muestrasTotal);
@@ -77,7 +79,6 @@ public class MapasController {
         model.addAttribute("muestrasEstudio", muestrasxEstudio);
         List<Object> muestrasxTubo = reporteService.getMuestrasxTubo();
         model.addAttribute("muestrasTubo", muestrasxTubo);
-    	return "mapas/pendientes";
-	}  
-	
+    	return "mapas/pendientesOSM";
+	}
 }

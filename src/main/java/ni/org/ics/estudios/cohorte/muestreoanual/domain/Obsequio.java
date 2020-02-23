@@ -12,7 +12,7 @@ import javax.persistence.Table;
  **/
 
 @Entity
-@Table(name = "obsequios", catalog = "muestreoanual")
+@Table(name = "obsequios", catalog = "estudios_ics")
 public class Obsequio {
 
 	/**

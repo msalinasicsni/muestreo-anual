@@ -7,9 +7,11 @@ import java.util.Date;
 import java.util.List;
 import javax.annotation.Resource;
 
+import ni.org.ics.estudios.cohorte.muestreoanual.domain.ConsentimientoChik;
 import ni.org.ics.estudios.cohorte.muestreoanual.domain.RecepcionSero;
 import ni.org.ics.estudios.cohorte.muestreoanual.domain.RecepcionSeroId;
 
+import ni.org.ics.estudios.cohorte.muestreoanual.utils.Constants;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -42,7 +44,8 @@ public class RecepcionSeroService {
 		// Retrieve session from Hibernate
 		Session session = sessionFactory.getCurrentSession();
 		// Create a Hibernate query (HQL)
-		Query query = session.createQuery("FROM RecepcionSero");
+		Query query = session.createQuery("FROM RecepcionSero where year(recSeroId.fechaRecSero) = :anio");
+		query.setInteger("anio", Constants.ANIOMUESTREO);
 		// Retrieve all
 		return  query.list();
 	}
@@ -85,10 +88,12 @@ public class RecepcionSeroService {
 		// Create a Hibernate query (HQL)
 		Query query = session.createSQLQuery("select recepcionsero.codigo, recepcionsero.fecha_registro, recepcionsero.lugar, " +
 				"recepcionsero.volbhc, recepcionsero.observacion, recepcionsero.username " +
-				"from recepcionsero left join muestras on recepcionsero.codigo = muestras.codigo and recepcionsero.fecha_sero = muestras.fecha_registro " +
+				"from estudios_ics.recepcionsero left join estudios_ics.muestras on recepcionsero.codigo = muestras.codigo and recepcionsero.fecha_sero = muestras.fecha_registro " +
 				"where ((recepcionsero.fecha_sero = :fechaSero) and " +
-				"(muestras.codigo Is Null or recepcionsero.fecha_sero <> muestras.fecha_registro or muestras.tuborojo=0));");
+				"(muestras.codigo Is Null or recepcionsero.fecha_sero <> muestras.fecha_registro or muestras.tuborojo=0) " +
+				"and (YEAR(recepcionsero.fecha_sero) = :anio and YEAR(muestras.fecha_registro) = :anio));");
 		query.setTimestamp("fechaSero", timeStamp);
+		query.setInteger("anio", Constants.ANIOMUESTREO);
 		// Retrieve all
 		return  query.list();
 	}
@@ -110,9 +115,12 @@ public class RecepcionSeroService {
 		// Create a Hibernate query (HQL)
 		Query query = session.createSQLQuery("select recepcionsero.codigo, recepcionsero.fecha_registro, recepcionsero.lugar, " +
 				"recepcionsero.volbhc, recepcionsero.observacion, recepcionsero.username " +
-				"from recepcionsero left join labsero on recepcionsero.codigo = labsero.codigo and recepcionsero.fecha_sero = labsero.fecha_sero " +
-				"where ((recepcionsero.fecha_sero  = :fechaSero) and (labsero.codigo Is Null or recepcionsero.fecha_sero <> labsero.fecha_sero));");
+				"from estudios_ics.recepcionsero left join estudios_ics.labsero on recepcionsero.codigo = labsero.codigo and recepcionsero.fecha_sero = labsero.fecha_sero " +
+				"where ((recepcionsero.fecha_sero  = :fechaSero) and " +
+				"(labsero.codigo Is Null or recepcionsero.fecha_sero <> labsero.fecha_sero) " +
+				"and (YEAR(recepcionsero.fecha_sero) = :anio and YEAR(labsero.fecha_sero) = :anio));");
 		query.setTimestamp("fechaSero", timeStamp);
+		query.setInteger("anio", Constants.ANIOMUESTREO);
 		// Retrieve all
 		return  query.list();
 	}

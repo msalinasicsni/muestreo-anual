@@ -10,6 +10,7 @@ import javax.annotation.Resource;
 import ni.org.ics.estudios.cohorte.muestreoanual.domain.RecepcionBHC;
 import ni.org.ics.estudios.cohorte.muestreoanual.domain.RecepcionBHCId;
 
+import ni.org.ics.estudios.cohorte.muestreoanual.utils.Constants;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -42,7 +43,8 @@ public class RecepcionBHCService {
 		// Retrieve session from Hibernate
 		Session session = sessionFactory.getCurrentSession();
 		// Create a Hibernate query (HQL)
-		Query query = session.createQuery("FROM RecepcionBHC");
+		Query query = session.createQuery("FROM RecepcionBHC where year(recBhcId.fechaRecBHC) = :anio");
+		query.setInteger("anio", Constants.ANIOMUESTREO);
 		// Retrieve all
 		return  query.list();
 	}
@@ -83,10 +85,12 @@ public class RecepcionBHCService {
 		// Create a Hibernate query (HQL)
 		Query query = session.createSQLQuery("select recepcionbhc.codigo, recepcionbhc.fecha_registro, recepcionbhc.lugar, " +
 				"recepcionbhc.volbhc, recepcionbhc.observacion, recepcionbhc.username " +
-				"from recepcionbhc left join muestras on recepcionbhc.codigo = muestras.codigo and recepcionbhc.fecha_bhc = muestras.fecha_registro " +
+				"from estudios_ics.recepcionbhc left join estudios_ics.muestras on recepcionbhc.codigo = muestras.codigo and recepcionbhc.fecha_bhc = muestras.fecha_registro " +
 				"where ((recepcionbhc.fecha_bhc = :fechaBHC) and " +
-				"(muestras.codigo Is Null or recepcionbhc.fecha_bhc <> muestras.fecha_registro or muestras.tubobhc=0));");
+				"(muestras.codigo Is Null or recepcionbhc.fecha_bhc <> muestras.fecha_registro or muestras.tubobhc=0) " +
+				"and YEAR(muestras.fecha_registro) = :anio and YEAR(recepcionbhc.fecha_bhc) = :anio);");
 		query.setTimestamp("fechaBHC", timeStamp);
+		query.setInteger("anio", Constants.ANIOMUESTREO);
 		// Retrieve all
 		return  query.list();
 	}
@@ -108,9 +112,11 @@ public class RecepcionBHCService {
 		// Create a Hibernate query (HQL)
 		Query query = session.createSQLQuery("select recepcionbhc.codigo, recepcionbhc.fecha_registro, recepcionbhc.lugar, " +
 				"recepcionbhc.volbhc, recepcionbhc.observacion, recepcionbhc.username " +
-				"from recepcionbhc left join labbhc on recepcionbhc.codigo = labbhc.codigo and recepcionbhc.fecha_bhc = labbhc.fecha_bhc " +
-				"where ((recepcionbhc.fecha_bhc = :fechaBHC) and (labbhc.codigo Is Null or recepcionbhc.fecha_bhc <> labbhc.fecha_bhc));");
+				"from estudios_ics.recepcionbhc left join estudios_ics.labbhc on recepcionbhc.codigo = labbhc.codigo and recepcionbhc.fecha_bhc = labbhc.fecha_bhc " +
+				"where ((recepcionbhc.fecha_bhc = :fechaBHC) and " +
+				"(labbhc.codigo Is Null or recepcionbhc.fecha_bhc <> labbhc.fecha_bhc) and YEAR(labbhc.fecha_bhc) = :anio and YEAR(recepcionbhc.fecha_bhc) = :anio);");
 		query.setTimestamp("fechaBHC", timeStamp);
+		query.setInteger("anio", Constants.ANIOMUESTREO);
 		// Retrieve all
 		return  query.list();
 	}

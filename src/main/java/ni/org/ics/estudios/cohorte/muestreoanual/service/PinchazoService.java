@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import ni.org.ics.estudios.cohorte.muestreoanual.domain.Pinchazo;
 import ni.org.ics.estudios.cohorte.muestreoanual.domain.PinchazoId;
 
+import ni.org.ics.estudios.cohorte.muestreoanual.utils.Constants;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -39,7 +40,8 @@ public class PinchazoService {
 		// Retrieve session from Hibernate
 		Session session = sessionFactory.getCurrentSession();
 		// Create a Hibernate query (HQL)
-		Query query = session.createQuery("FROM Pinchazo");
+		Query query = session.createQuery("FROM Pinchazo where year(pinId.fechaPinchazo) = :anio");
+		query.setInteger("anio", Constants.ANIOMUESTREO);
 		// Retrieve all
 		return  query.list();
 	}
@@ -49,7 +51,8 @@ public class PinchazoService {
 		// Retrieve session from Hibernate
 		Session session = sessionFactory.getCurrentSession();
 		// Create a Hibernate query (HQL)
-		Query query = session.createSQLQuery("SELECT DATE(fecha_pin), COUNT(codigo) AS Total FROM pinchazos GROUP BY DATE(fecha_pin);");
+		Query query = session.createSQLQuery("SELECT DATE(fecha_pin), COUNT(codigo) AS Total FROM pinchazos WHERE YEAR(fecha_pin) = :anio GROUP BY DATE(fecha_pin);");
+		query.setInteger("anio", Constants.ANIOMUESTREO);
 		// Retrieve all
 		return  query.list();
 	}

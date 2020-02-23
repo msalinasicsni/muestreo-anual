@@ -12,7 +12,7 @@ import javax.persistence.Table;
  **/
 
 @Entity
-@Table(name = "barrios", catalog = "muestreoanual")
+@Table(name = "barrios", catalog = "estudios_ics")
 
 public class Barrio {
 	
@@ -20,14 +20,14 @@ public class Barrio {
 	private String nombreBarrio;
 	
 	@Id
-	@Column(name = "barrio", nullable = false, length = 4)
+	@Column(name = "codigo", nullable = false, length = 4)
 	public Integer getBarrio() {
 		return barrio;
 	}
 	public void setBarrio(Integer barrio) {
 		this.barrio = barrio;
 	}
-	@Column(name = "nombre_barrio", nullable = false, length = 150)
+	@Column(name = "nombre", nullable = false, length = 150)
 	public String getNombreBarrio() {
 		return nombreBarrio;
 	}

@@ -30,7 +30,7 @@
 	<!-- Scroll to top -->
 	<span class="totop"><a href="#"><i class="icon-chevron-up"></i></a></span>
 	<jsp:include page="../fragments/scripts.jsp" />
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBPnElIQTm02hCnvAMZGDTd0zdGk-zoLF8&sensor=false"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAK1XE7g46S15tf9qfCr7eKnzruEcflJiU"></script>
     <script>
     function initialize() {
     	  var mapOptions = {

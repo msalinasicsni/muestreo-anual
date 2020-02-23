@@ -10,6 +10,7 @@ import javax.annotation.Resource;
 import ni.org.ics.estudios.cohorte.muestreoanual.domain.Muestra;
 import ni.org.ics.estudios.cohorte.muestreoanual.domain.MuestraId;
 
+import ni.org.ics.estudios.cohorte.muestreoanual.utils.Constants;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -58,7 +59,8 @@ public class MuestraService {
 		// Retrieve session from Hibernate
 		Session session = sessionFactory.getCurrentSession();
 		// Create a Hibernate query (HQL)
-		Query query = session.createQuery("FROM Muestra mx where mx.tuboBHC = 1");
+		Query query = session.createQuery("FROM Muestra mx where mx.tuboBHC = 1 and year(mx.movilInfo.today) = :anio ");
+		query.setInteger("anio", Constants.ANIOMUESTREO);
 		// Retrieve all
 		return  query.list();
 	}
@@ -98,15 +100,17 @@ public class MuestraService {
 		try {
 			dateWithoutTime = sdf.parse(sdf.format(new Date()));
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
+			// TODO Auto-generated catch block0
 			e.printStackTrace();
 		}
 		Timestamp timeStamp = new Timestamp(dateWithoutTime.getTime());
 		// Create a Hibernate query (HQL)
 		Query query = session.createSQLQuery("select muestras.codigo, muestras.fecha_muestra, muestras.pinchazos, muestras.recurso1, muestras.recurso2 " +
-				"from muestras left join recepcionbhc on muestras.codigo = recepcionbhc.codigo and muestras.fecha_registro = recepcionbhc.fecha_bhc " +
-				"where ((muestras.fecha_registro  = :fechaBHC and muestras.tubobhc =1) and (recepcionbhc.codigo Is Null or muestras.fecha_registro <> recepcionbhc.fecha_bhc));");
+				"from estudios_ics.muestras left join estudios_ics.recepcionbhc on muestras.codigo = recepcionbhc.codigo and muestras.fecha_registro = recepcionbhc.fecha_bhc " +
+				"where ((muestras.fecha_registro  = :fechaBHC and muestras.tubobhc =1) and (recepcionbhc.codigo Is Null or muestras.fecha_registro <> recepcionbhc.fecha_bhc) " +
+				"and (YEAR(muestras.fecha_registro) = :anio and YEAR(recepcionbhc.fecha_bhc) = :anio));");
 		query.setTimestamp("fechaBHC", timeStamp);
+		query.setInteger("anio", Constants.ANIOMUESTREO);
 		// Retrieve all
 		return  query.list();
 	}
@@ -126,9 +130,11 @@ public class MuestraService {
 		Timestamp timeStamp = new Timestamp(dateWithoutTime.getTime());
 		// Create a Hibernate query (HQL)
 		Query query = session.createSQLQuery("select muestras.codigo, muestras.fecha_muestra, muestras.pinchazos, muestras.recurso1, muestras.recurso2 " +
-				"from muestras left join labbhc on muestras.codigo = labbhc.codigo and muestras.fecha_registro = labbhc.fecha_bhc " +
-				"where ((muestras.fecha_registro = :fechaBHC and muestras.tubobhc =1) and (labbhc.codigo Is Null or muestras.fecha_registro <> labbhc.fecha_bhc));");
+				"from estudios_ics.muestras left join estudios_ics.labbhc on muestras.codigo = labbhc.codigo and muestras.fecha_registro = labbhc.fecha_bhc " +
+				"where ((muestras.fecha_registro = :fechaBHC and muestras.tubobhc =1) and (labbhc.codigo Is Null or muestras.fecha_registro <> labbhc.fecha_bhc) " +
+				"and (YEAR(muestras.fecha_registro) = :anio or YEAR(labbhc.fecha_bhc) = :anio ));");
 		query.setTimestamp("fechaBHC", timeStamp);
+		query.setInteger("anio", Constants.ANIOMUESTREO);
 		// Retrieve all
 		return  query.list();
 	}
@@ -148,9 +154,11 @@ public class MuestraService {
 		Timestamp timeStamp = new Timestamp(dateWithoutTime.getTime());
 		// Create a Hibernate query (HQL)
 		Query query = session.createSQLQuery("select muestras.codigo, muestras.fecha_muestra, muestras.pinchazos, muestras.recurso1, muestras.recurso2 " +
-				"from muestras left join recepcionsero on muestras.codigo = recepcionsero.codigo and muestras.fecha_registro = recepcionsero.fecha_sero " +
-				"where ((muestras.fecha_registro  = :fechaSero and muestras.tuborojo =1) and (recepcionsero.codigo Is Null or muestras.fecha_registro <> recepcionsero.fecha_sero));");
+				"from estudios_ics.muestras left join estudios_ics.recepcionsero on muestras.codigo = recepcionsero.codigo and muestras.fecha_registro = recepcionsero.fecha_sero " +
+				"where ((muestras.fecha_registro  = :fechaSero and muestras.tuborojo =1) and (recepcionsero.codigo Is Null or muestras.fecha_registro <> recepcionsero.fecha_sero) " +
+				"and (YEAR(muestras.fecha_registro) = :anio and YEAR(recepcionsero.fecha_sero) = :anio));");
 		query.setTimestamp("fechaSero", timeStamp);
+		query.setInteger("anio", Constants.ANIOMUESTREO);
 		// Retrieve all
 		return  query.list();
 	}
@@ -170,9 +178,11 @@ public class MuestraService {
 		Timestamp timeStamp = new Timestamp(dateWithoutTime.getTime());
 		// Create a Hibernate query (HQL)
 		Query query = session.createSQLQuery("select muestras.codigo, muestras.fecha_muestra, muestras.pinchazos, muestras.recurso1, muestras.recurso2 " +
-				"from muestras left join labsero on muestras.codigo = labsero.codigo and muestras.fecha_registro = labsero.fecha_sero " +
-				"where ((muestras.fecha_registro = :fechaSero and muestras.tuborojo =1) and (labsero.codigo Is Null or muestras.fecha_registro <> labsero.fecha_sero));");
+				"from estudios_ics.muestras left join estudios_ics.labsero on muestras.codigo = labsero.codigo and muestras.fecha_registro = labsero.fecha_sero " +
+				"where ((muestras.fecha_registro = :fechaSero and muestras.tuborojo =1) and (labsero.codigo Is Null or muestras.fecha_registro <> labsero.fecha_sero) " +
+				"and (YEAR(muestras.fecha_registro) = :anio and YEAR(labsero.fecha_sero) = :anio));");
 		query.setTimestamp("fechaSero", timeStamp);
+		query.setInteger("anio", Constants.ANIOMUESTREO);
 		// Retrieve all
 		return  query.list();
 	}
@@ -193,9 +203,11 @@ public class MuestraService {
 		Timestamp timeStamp = new Timestamp(dateWithoutTime.getTime());
 		// Create a Hibernate query (HQL)
 		Query query = session.createSQLQuery("select muestras.codigo, muestras.fecha_muestra, muestras.pinchazos, muestras.recurso1, muestras.recurso2 " +
-				"from muestras left join labpbmc on muestras.codigo = labpbmc.codigo  and muestras.fecha_registro = labpbmc.fecha_pbmc " +
-				"where ((muestras.fecha_registro = :fechaPbmc and muestras.tuboleu =1) and (labpbmc.codigo Is Null or muestras.fecha_registro <> labpbmc.fecha_pbmc));");
+				"from estudios_ics.muestras left join estudios_ics.labpbmc on muestras.codigo = labpbmc.codigo  and muestras.fecha_registro = labpbmc.fecha_pbmc " +
+				"where ((muestras.fecha_registro = :fechaPbmc and muestras.tuboleu =1) and (labpbmc.codigo Is Null or muestras.fecha_registro <> labpbmc.fecha_pbmc) " +
+				"and (YEAR(muestras.fecha_registro) = :anio AND YEAR(labpbmc.fecha_pbmc) = :anio));");
 		query.setTimestamp("fechaPbmc", timeStamp);
+		query.setInteger("anio", Constants.ANIOMUESTREO);
 		// Retrieve all
 		return  query.list();
 	}
@@ -212,7 +224,8 @@ public class MuestraService {
 		// Retrieve session from Hibernate
 		Session session = sessionFactory.getCurrentSession();
 		// Create a Hibernate query (HQL)
-		Query query = session.createQuery("FROM Muestra mx where mx.tuboRojo = 1");
+		Query query = session.createQuery("FROM Muestra mx where mx.tuboRojo = 1 and year(mx.movilInfo.today) = :anio");
+		query.setInteger("anio", Constants.ANIOMUESTREO);
 		// Retrieve all
 		return  query.list();
 	}
@@ -255,7 +268,8 @@ public class MuestraService {
 		// Retrieve session from Hibernate
 		Session session = sessionFactory.getCurrentSession();
 		// Create a Hibernate query (HQL)
-		Query query = session.createQuery("FROM Muestra mx where mx.tuboLeu = 1");
+		Query query = session.createQuery("FROM Muestra mx where mx.tuboLeu = 1 and year(mx.movilInfo.today) = :anio");
+		query.setInteger("anio", Constants.ANIOMUESTREO);
 		// Retrieve all
 		return  query.list();
 	}

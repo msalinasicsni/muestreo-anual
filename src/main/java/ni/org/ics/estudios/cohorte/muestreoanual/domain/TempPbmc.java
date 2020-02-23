@@ -14,7 +14,7 @@ import javax.persistence.Table;
  **/
 
 @Entity
-@Table(name = "temp_pbmc", catalog = "muestreoanual")
+@Table(name = "temp_pbmc", catalog = "estudios_ics")
 public class TempPbmc {
 
 	/**
