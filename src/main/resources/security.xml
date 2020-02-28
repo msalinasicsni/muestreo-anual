@@ -29,8 +29,8 @@
 		<authentication-provider>
 			<password-encoder ref="encoder" />
 			<jdbc-user-service data-source-ref="dataSource"
-				users-by-username-query="select username, password, enabled from usuarios_sistema where SHA1(username)=SHA1(?)"
-				authorities-by-username-query="select u.username username, ur.authority authority from usuarios_sistema u, usuarios_roles ur where u.username = ur.username and u.username = ?" />
+							   users-by-username-query="select nombre_usuario username, contrasena password, habilitado enabled from estudios_ics.usuarios_sistema where SHA1(nombre_usuario)=SHA1(?)"
+							   authorities-by-username-query="select u.nombre_usuario username, ur.rol authority from estudios_ics.usuarios_sistema u, estudios_ics.usuarios_roles ur where u.nombre_usuario = ur.nombre_usuario and u.nombre_usuario = ?" />
 		</authentication-provider>
 	</authentication-manager>
 </beans:beans>

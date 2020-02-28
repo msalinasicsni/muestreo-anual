@@ -130,9 +130,9 @@
 							property="principal.username" /> <b class="caret"></b>
 				</a> <!-- Dropdown menu -->
 					<ul class="dropdown-menu">
-						<li><a
+						<!--<li><a
 							href="<spring:url value="/usuarios/mod/password" htmlEscape="true" />"><i
-								class="icon-cogs"></i> <fmt:message key="users.changepass" /></a></li>
+								class="icon-cogs"></i> <fmt:message key="users.changepass" /></a></li>-->
 						<li><a
 							href="<spring:url value="/j_spring_security_logout" htmlEscape="true" />"><i
 								class="icon-off"></i> <fmt:message key="log_out" /></a></li>

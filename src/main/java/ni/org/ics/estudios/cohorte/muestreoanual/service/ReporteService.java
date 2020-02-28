@@ -198,13 +198,12 @@ public class ReporteService {
 				"SELECT labsero.Codigo, 'Rojo' AS Tipo, labsero.fecha_sero, labsero.volsero, labsero.observacion, labsero.fecha_registro FROM estudios_ics.labsero WHERE (((labsero.volsero)>0)) and YEAR(fecha_sero) = "+Constants.ANIOMUESTREO+";");
 		query.executeUpdate();
 		
-		query = session.createSQLQuery("SELECT participantes_vw.edad AS e, Count(participantes_vw.codigo) AS total, " +
+		query = session.createSQLQuery("SELECT TRUNCATE(DATEDIFF(DATE(NOW()),participantes_vw.fechanac) / 365.25,0) AS e, Count(participantes_vw.codigo) AS total, " +
 				"Count(muestrasxdia_barrio.codigo) AS tomadas, Count(participantes_vw.codigo) -  Count(muestrasxdia_barrio.codigo) AS faltantes, " +
 				"(Count(muestrasxdia_barrio.codigo))/ Count(participantes_vw.codigo) * 100 as Porcentaje " +
 				"FROM (((participantes_vw)) LEFT JOIN muestrasxdia_barrio ON participantes_vw.codigo = muestrasxdia_barrio.codigo) " +
 				//"WHERE (((participantes_vw.edad)>=6) ) " + //AND ((participantes_vw. est_part)=1) AND ((participantes_vw.codigo)<30000)
-				//"GROUP BY TRUNCATE(DATEDIFF(DATE(NOW()),participantes_vw.fechanac) / 365.25,0);");
-				"GROUP BY participantes_vw.edad;");
+				"GROUP BY TRUNCATE(DATEDIFF(DATE(NOW()),participantes_vw.fechanac) / 365.25,0);");
 		// Retrieve all
 		return  query.list();
 	}
