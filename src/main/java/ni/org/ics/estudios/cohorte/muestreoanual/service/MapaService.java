@@ -61,7 +61,7 @@ public class MapaService {
 		// Create a Hibernate query (HQL)
 		Query query = session.createSQLQuery("select distinct participantes_vw.codigo as codigo, latitud as latitud, longitud as longitud " +
 				"from participantes_vw left join estudios_ics.muestras on participantes_vw.codigo = muestras.codigo " +
-				"where latitud is not null and est_part = 1 order by participantes_vw.codigo;");
+				"where latitud is not null order by participantes_vw.codigo;");
 		// Retrieve all
 		query.setResultTransformer(Transformers.aliasToBean(PuntoGps.class));
 		return  query.list();
@@ -87,7 +87,7 @@ public class MapaService {
 		// Create a Hibernate query (HQL)
 		Query query = session.createSQLQuery("select distinct participantes_vw.codigo as codigo, latitud as latitud, longitud as longitud, tuboleu as tuboleu " +
 				"from participantes_vw left join estudios_ics.muestras on participantes_vw.codigo = muestras.codigo " +
-				"where latitud is not null and latitud > 0 and est_part = 1 and (tuborojo=1 or tuboleu=1) " +
+				"where latitud is not null and latitud > 0 and (tuborojo=1 or tuboleu=1) " +
 				"AND YEAR(muestras.fecha_registro) = :anio order by participantes_vw.codigo;");
 		query.setInteger("anio", Constants.ANIOMUESTREO);
 		// Retrieve all
@@ -114,9 +114,12 @@ public class MapaService {
 		// Retrieve session from Hibernate
 		Session session = sessionFactory.getCurrentSession();
 		// Create a Hibernate query (HQL)
-		Query query = session.createSQLQuery("select distinct participantes_vw.codigo as codigo, latitud as latitud, longitud as longitud, pbmc as pbmc, paxgene as paxgene " +
-				"from participantes_vw left join estudios_ics.muestras on participantes_vw.codigo = muestras.codigo " +
-				"where latitud is not null and latitud > 0 and est_part = 1 and muestras.codigo is null order by participantes_vw.codigo;");
+		Query query = session.createSQLQuery("select participantes_vw.codigo as codigo, latitud as latitud, longitud as longitud, pbmc as pbmc, paxgene as paxgene " +
+				"from participantes_vw " +
+				"where latitud is not null and latitud > 0 and codigo not in ( " +
+				"select m.codigo  from estudios_ics.muestras as m where YEAR(m.fecha_registro) =  :anio )" +
+				" order by participantes_vw.codigo;");
+		query.setInteger("anio", Constants.ANIOMUESTREO);
 		// Retrieve all
 		query.setResultTransformer(Transformers.aliasToBean(PuntoGps.class));
 		return  query.list();
