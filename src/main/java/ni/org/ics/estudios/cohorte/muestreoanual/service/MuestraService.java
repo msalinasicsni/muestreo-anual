@@ -108,7 +108,7 @@ public class MuestraService {
 		Query query = session.createSQLQuery("select muestras.codigo, muestras.fecha_muestra, muestras.pinchazos, muestras.recurso1, muestras.recurso2 " +
 				"from estudios_ics.muestras left join estudios_ics.recepcionbhc on muestras.codigo = recepcionbhc.codigo and muestras.fecha_registro = recepcionbhc.fecha_bhc " +
 				"where ((muestras.fecha_registro  = :fechaBHC and muestras.tubobhc =1) and (recepcionbhc.codigo Is Null or muestras.fecha_registro <> recepcionbhc.fecha_bhc) " +
-				"and (YEAR(muestras.fecha_registro) = :anio and YEAR(recepcionbhc.fecha_bhc) = :anio));");
+				"and (YEAR(muestras.fecha_registro) = :anio));");
 		query.setTimestamp("fechaBHC", timeStamp);
 		query.setInteger("anio", Constants.ANIOMUESTREO);
 		// Retrieve all
@@ -132,7 +132,7 @@ public class MuestraService {
 		Query query = session.createSQLQuery("select muestras.codigo, muestras.fecha_muestra, muestras.pinchazos, muestras.recurso1, muestras.recurso2 " +
 				"from estudios_ics.muestras left join estudios_ics.labbhc on muestras.codigo = labbhc.codigo and muestras.fecha_registro = labbhc.fecha_bhc " +
 				"where ((muestras.fecha_registro = :fechaBHC and muestras.tubobhc =1) and (labbhc.codigo Is Null or muestras.fecha_registro <> labbhc.fecha_bhc) " +
-				"and (YEAR(muestras.fecha_registro) = :anio or YEAR(labbhc.fecha_bhc) = :anio ));");
+				"and (YEAR(muestras.fecha_registro) = :anio));");
 		query.setTimestamp("fechaBHC", timeStamp);
 		query.setInteger("anio", Constants.ANIOMUESTREO);
 		// Retrieve all
@@ -156,7 +156,7 @@ public class MuestraService {
 		Query query = session.createSQLQuery("select muestras.codigo, muestras.fecha_muestra, muestras.pinchazos, muestras.recurso1, muestras.recurso2 " +
 				"from estudios_ics.muestras left join estudios_ics.recepcionsero on muestras.codigo = recepcionsero.codigo and muestras.fecha_registro = recepcionsero.fecha_sero " +
 				"where ((muestras.fecha_registro  = :fechaSero and muestras.tuborojo =1) and (recepcionsero.codigo Is Null or muestras.fecha_registro <> recepcionsero.fecha_sero) " +
-				"and (YEAR(muestras.fecha_registro) = :anio and YEAR(recepcionsero.fecha_sero) = :anio));");
+				"and (YEAR(muestras.fecha_registro) = :anio));");
 		query.setTimestamp("fechaSero", timeStamp);
 		query.setInteger("anio", Constants.ANIOMUESTREO);
 		// Retrieve all
@@ -180,7 +180,7 @@ public class MuestraService {
 		Query query = session.createSQLQuery("select muestras.codigo, muestras.fecha_muestra, muestras.pinchazos, muestras.recurso1, muestras.recurso2 " +
 				"from estudios_ics.muestras left join estudios_ics.labsero on muestras.codigo = labsero.codigo and muestras.fecha_registro = labsero.fecha_sero " +
 				"where ((muestras.fecha_registro = :fechaSero and muestras.tuborojo =1) and (labsero.codigo Is Null or muestras.fecha_registro <> labsero.fecha_sero) " +
-				"and (YEAR(muestras.fecha_registro) = :anio and YEAR(labsero.fecha_sero) = :anio));");
+				"and (YEAR(muestras.fecha_registro) = :anio));");
 		query.setTimestamp("fechaSero", timeStamp);
 		query.setInteger("anio", Constants.ANIOMUESTREO);
 		// Retrieve all
@@ -205,7 +205,7 @@ public class MuestraService {
 		Query query = session.createSQLQuery("select muestras.codigo, muestras.fecha_muestra, muestras.pinchazos, muestras.recurso1, muestras.recurso2 " +
 				"from estudios_ics.muestras left join estudios_ics.labpbmc on muestras.codigo = labpbmc.codigo  and muestras.fecha_registro = labpbmc.fecha_pbmc " +
 				"where ((muestras.fecha_registro = :fechaPbmc and muestras.tuboleu =1) and (labpbmc.codigo Is Null or muestras.fecha_registro <> labpbmc.fecha_pbmc) " +
-				"and (YEAR(muestras.fecha_registro) = :anio AND YEAR(labpbmc.fecha_pbmc) = :anio));");
+				"and (YEAR(muestras.fecha_registro) = :anio));");
 		query.setTimestamp("fechaPbmc", timeStamp);
 		query.setInteger("anio", Constants.ANIOMUESTREO);
 		// Retrieve all

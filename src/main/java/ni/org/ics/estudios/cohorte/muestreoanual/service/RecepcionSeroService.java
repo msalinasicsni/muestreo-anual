@@ -91,7 +91,7 @@ public class RecepcionSeroService {
 				"from estudios_ics.recepcionsero left join estudios_ics.muestras on recepcionsero.codigo = muestras.codigo and recepcionsero.fecha_sero = muestras.fecha_registro " +
 				"where ((recepcionsero.fecha_sero = :fechaSero) and " +
 				"(muestras.codigo Is Null or recepcionsero.fecha_sero <> muestras.fecha_registro or muestras.tuborojo=0) " +
-				"and (YEAR(recepcionsero.fecha_sero) = :anio and YEAR(muestras.fecha_registro) = :anio));");
+				"and (YEAR(recepcionsero.fecha_sero) = :anio));");
 		query.setTimestamp("fechaSero", timeStamp);
 		query.setInteger("anio", Constants.ANIOMUESTREO);
 		// Retrieve all
@@ -118,7 +118,7 @@ public class RecepcionSeroService {
 				"from estudios_ics.recepcionsero left join estudios_ics.labsero on recepcionsero.codigo = labsero.codigo and recepcionsero.fecha_sero = labsero.fecha_sero " +
 				"where ((recepcionsero.fecha_sero  = :fechaSero) and " +
 				"(labsero.codigo Is Null or recepcionsero.fecha_sero <> labsero.fecha_sero) " +
-				"and (YEAR(recepcionsero.fecha_sero) = :anio and YEAR(labsero.fecha_sero) = :anio));");
+				"and (YEAR(recepcionsero.fecha_sero) = :anio));");
 		query.setTimestamp("fechaSero", timeStamp);
 		query.setInteger("anio", Constants.ANIOMUESTREO);
 		// Retrieve all

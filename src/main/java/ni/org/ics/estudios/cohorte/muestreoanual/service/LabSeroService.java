@@ -87,7 +87,7 @@ public class LabSeroService {
 		Query query = session.createSQLQuery("select labsero.codigo, labsero.fecha_registro, labsero.volsero, labsero.observacion, labsero.username	" +
 				"from estudios_ics.labsero left join estudios_ics.recepcionsero on labsero.codigo = recepcionsero.codigo and labsero.fecha_sero = recepcionsero.fecha_sero " +
 				"where ((labsero.fecha_sero = :fechaRecSero) and (recepcionsero.codigo Is Null or labsero.fecha_sero <> recepcionsero.fecha_sero) " +
-				"and (YEAR(labsero.fecha_sero) = :anio AND YEAR(recepcionsero.fecha_sero) = :anio));");
+				"and (YEAR(labsero.fecha_sero) = :anio));");
 		query.setTimestamp("fechaRecSero", timeStamp);
 		query.setInteger("anio", Constants.ANIOMUESTREO);
 		// Retrieve all
@@ -112,7 +112,7 @@ public class LabSeroService {
 		Query query = session.createSQLQuery("select labsero.codigo, labsero.fecha_registro, labsero.volsero, labsero.observacion, labsero.username	" +
 				"from estudios_ics.labsero left join estudios_ics.muestras on labsero.codigo = muestras.codigo and labsero.fecha_sero = muestras.fecha_registro " +
 				"where ((labsero.fecha_sero = :fechaRecSero) and (muestras.codigo Is Null or labsero.fecha_sero <> muestras.fecha_registro or muestras.tuborojo=0) " +
-				"and (YEAR(labsero.fecha_sero) = :anio AND YEAR(muestras.fecha_registro) = :anio));");
+				"and (YEAR(labsero.fecha_sero) = :anio));");
 		query.setTimestamp("fechaRecSero", timeStamp);
 		query.setInteger("anio", Constants.ANIOMUESTREO);
 		// Retrieve all

@@ -86,7 +86,7 @@ public class LabPbmcService {
 		Query query = session.createSQLQuery("select labpbmc.codigo, labpbmc.fecha_registro, labpbmc.volpbmc, labpbmc.observacion, labpbmc.username " +
 				"from estudios_ics.labpbmc left join estudios_ics.muestras on labpbmc.codigo = muestras.codigo and labpbmc.fecha_pbmc = muestras.fecha_registro " +
 				"where ((labpbmc.fecha_pbmc = :fechaRecPbmc) and (muestras.codigo Is Null or labpbmc.fecha_pbmc <> muestras.fecha_registro or muestras.tuboleu=0) " +
-				"and (YEAR(labpbmc.fecha_pbmc) = :anio AND YEAR(muestras.fecha_registro) = :anio));");
+				"and (YEAR(labpbmc.fecha_pbmc) = :anio));");
 		query.setTimestamp("fechaRecPbmc", timeStamp);
 		query.setInteger("anio", Constants.ANIOMUESTREO);
 		// Retrieve all

@@ -57,8 +57,6 @@ public class MapasController {
 	@RequestMapping(value = "/muestras", method = RequestMethod.GET)
     public String fetchMuestrasJSP(Model model) throws ParseException {
     	logger.debug("Mostrando Mapa en JSP");
-    	List<PuntoGps> participantes = mapaService.getParticipantesMuestrasGps();
-    	model.addAttribute("puntos", participantes);
     	List<Object> muestrasTotal = reporteService.getMuestrasTotal();
         model.addAttribute("muestrasTotal", muestrasTotal);
         List<Object> muestrasxEstudio = reporteService.getMuestrasxEstudio();
@@ -71,8 +69,6 @@ public class MapasController {
 	@RequestMapping(value = "/pendientes", method = RequestMethod.GET)
     public String fetchPendientesJSP(Model model) throws ParseException {
     	logger.debug("Mostrando Mapa en JSP");
-    	List<PuntoGps> participantes = mapaService.getParticipantesPendientesGps();
-    	model.addAttribute("puntos", participantes);
     	List<Object> muestrasTotal = reporteService.getMuestrasTotal();
         model.addAttribute("muestrasTotal", muestrasTotal);
         List<Object> muestrasxEstudio = reporteService.getMuestrasxEstudio();
@@ -81,4 +77,25 @@ public class MapasController {
         model.addAttribute("muestrasTubo", muestrasxTubo);
     	return "mapas/pendientesOSM";
 	}
+
+	@RequestMapping(value = "pendientesGps", method = RequestMethod.GET, produces = "application/json")
+	public @ResponseBody List<PuntoGps> getParticipantesPendientesGps() {
+		logger.info("Obtener los puntos de los participantes que aun no se tomaron muestra");
+		List<PuntoGps> participantes = mapaService.getParticipantesPendientesGps();
+		if (participantes == null){
+			logger.debug("Nulo");
+		}
+		return participantes;
+	}
+
+	@RequestMapping(value = "muestrasGps", method = RequestMethod.GET, produces = "application/json")
+	public @ResponseBody List<PuntoGps> getParticipantesMuestrasGps() {
+		logger.info("Obtener los puntos de los participantes que ya se tomaron muestra");
+		List<PuntoGps> participantes = mapaService.getParticipantesMuestrasGps();
+		if (participantes == null){
+			logger.debug("Nulo");
+		}
+		return participantes;
+	}
+
 }
