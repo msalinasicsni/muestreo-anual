@@ -242,7 +242,7 @@ public class ReporteService {
 		"Count(labpbmc.codigo) AS pbmcs, (Count(labsero.codigo)+Count(labpbmc.codigo))/Count(participantes_vw.codigo)*100 AS Porcentaje " +
 		"FROM participantes_vw LEFT JOIN estudios_ics.labsero ON participantes_vw.codigo = labsero.codigo LEFT JOIN estudios_ics.labpbmc ON participantes_vw.codigo = labpbmc.codigo " +
 		//"WHERE (((participantes_vw.edad)>=6)) " + //AND ((participantes_vw.est_part)=1) AND ((participantes_vw.codigo)<30000)
-				"WHERE ((YEAR(fecha_sero) = :anio and YEAR(fecha_pbmc) = :anio )) " +
+				"WHERE ((labsero.codigo is null or labpbmc.codigo is null) or (YEAR(fecha_sero) = :anio or YEAR(fecha_pbmc) = :anio )) " +
 				"GROUP BY pbmc;");
 		query.setParameter("anio", Constants.ANIOMUESTREO);
 		// Retrieve all
@@ -262,7 +262,8 @@ public class ReporteService {
 				" LEFT JOIN estudios_ics.labbhc ON participantes_vw.codigo = labbhc.codigo) " +
 				"LEFT JOIN estudios_ics.labpax ON participantes_vw.codigo = labpax.codigo  " +
 				//"(((participantes_vw.edad)>=6) );"); //AND ((participantes_vw.est_part)=1) AND ((participantes_vw.codigo)<30000)
-		"WHERE ((YEAR(labsero.fecha_sero) = :anio or YEAR(labpbmc.fecha_pbmc) = :anio or YEAR(labbhc.fecha_bhc) = :anio or YEAR(labpax.fecha_pax) = :anio)); ");
+		"WHERE ( (labsero.codigo is null or labpbmc.codigo is null or labbhc.codigo is null or labpax.codigo is null) " +
+				"or (YEAR(labsero.fecha_sero) = :anio or YEAR(labpbmc.fecha_pbmc) = :anio or YEAR(labbhc.fecha_bhc) = :anio or YEAR(labpax.fecha_pax) = :anio)); ");
 		query.setParameter("anio", Constants.ANIOMUESTREO);
 		// Retrieve all
 		return  query.list();
